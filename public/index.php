@@ -98,10 +98,10 @@ function getAccountName($conn) {
     </div>
 </div>
 
-<div id="mapoutput" style="float: right">
+<!--<div id="mapoutput" style="float: right">
     <textarea id="output" readonly></textarea>
     <button id="print" onclick="(function(){document.getElementById('output').value=world.print();})()">Print</button>
-</div>
+</div>-->
 
 <script>
     function toggleDropdown() {

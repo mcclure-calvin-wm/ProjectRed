@@ -1,4 +1,4 @@
-//(function() {
+(function() {
     var engine;
     function main() {
         engine = new Engine("canvas", 240, 160);
@@ -168,7 +168,7 @@
         engine.update = update;
         engine.render = render;
 
-        engine.onMouseDown = onMouseDown;
+        //engine.onMouseDown = onMouseDown;
 
         engine.start();
     }
@@ -850,4 +850,4 @@
     document.body.onload = function() {
         main();
     };
-//})();
+})();
