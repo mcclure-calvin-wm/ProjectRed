@@ -78,7 +78,7 @@ var sessionId = 0;
 
 var io = require('socket.io').listen(app);
 
-io.set('origins', 'localhost:* mmo.gammarush.com:*');
+io.set('origins', 'localhost:* 192.168.0.29:* mmo.gammarush.com:*');
 
 io.on('connection', function(socket) {
     var newClient = new Client(socket, sessionId);
@@ -111,7 +111,7 @@ io.on('connection', function(socket) {
             }
 
             log('[' + socket.handshake.address + '] ' + newClient.username + ' has joined the game');
-            socket.emit('chat', {username: '<span class="server">SERVER</span>', message: 'Welcome to the Project<span class="red">Red</span> Server! There are <span class="yellow">' + clients.length + '</span> people online.'});
+            socket.emit('chat', {username: '<span class="server">SERVER</span>', message: 'Welcome to the Project<span class="red">Red</span> Server!'});
 
             socket.emit('init_player', {id: newClient.id, x: newClient.x, y: newClient.y, dir: newClient.dir, username: newClient.username, sprite: newClient.sprite, faction: newClient.faction, factionid: newClient.factionid, color: newClient.color});
             socket.broadcast.emit('init_client', {id: newClient.id, x: newClient.x, y: newClient.y, dir: newClient.dir, username: newClient.username, sprite: newClient.sprite, faction: newClient.faction, factionid: newClient.factionid, color: newClient.color});

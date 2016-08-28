@@ -21,7 +21,7 @@ function login($conn) {
                             <span>Login Successful</span><br><br>
                             <input name="username" maxlength="20" placeholder="Username"/><br><br>
                             <input type="password" name="password" maxlength="20" placeholder="Password"/><br><br>
-                            <input class="submit" type="submit" name="submit" value="Log In"/><br><br>
+                            <input class="btn-black" type="submit" name="submit" value="Log In"/><br><br>
                             <a href="/register/">Register</a>
                             </form>';
                 }
@@ -31,7 +31,7 @@ function login($conn) {
                             <span>Incorrect Username or Password</span><br><br>
                             <input name="username" maxlength="20" placeholder="Username"/><br><br>
                             <input type="password" name="password" maxlength="20" placeholder="Password"/><br><br>
-                            <input class="submit" type="submit" name="submit" value="Log In"/><br><br>
+                            <input class="btn-black" type="submit" name="submit" value="Log In"/><br><br>
                             <a href="/register/">Register</a>
                             </form>';
             }
@@ -41,7 +41,7 @@ function login($conn) {
                     <span>Incorrect Username or Password</span><br><br>
                     <input name="username" maxlength="20" placeholder="Username"/><br><br>
                     <input type="password" name="password" maxlength="20" placeholder="Password"/><br><br>
-                    <input class="submit" type="submit" name="submit" value="Log In"/><br><br>
+                    <input class="btn-black" type="submit" name="submit" value="Log In"/><br><br>
                     <a href="/register/">Register</a>
                     </form>';
         }
@@ -118,7 +118,7 @@ function generateToken() {
             echo '<form class="account" action="/login/" method="post">
                     <input name="username" maxlength="20" placeholder="Username"/><br><br>
                     <input type="password" name="password" maxlength="20" placeholder="Password"/><br><br>
-                    <input class="submit" type="submit" name="submit" value="Log In"/><br><br>
+                    <input class="btn-black" type="submit" name="submit" value="Log In"/><br><br>
                     <a href="/register/">Register</a>
                     </form>';
         }

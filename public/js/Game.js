@@ -50,7 +50,7 @@
 
                 document.getElementById("clients-online").innerHTML = "";
                 for(var i = 0; i < clients.length; i++) {
-                    document.getElementById("clients-online").innerHTML += "<div class='client-list'><img width='64' height='96' src='res/preview/redpre.png'><div><span>" + clients[i].username + "</span><br><span>" + clients[i].faction + "</span></div></div>";
+                    document.getElementById("clients-online").innerHTML += "<div class='client-list'><img width='64' height='96' src='res/preview/" + clients[i].sprite + "pre.png'><div><span>" + clients[i].username + "</span><br><span>" + clients[i].faction + "</span></div></div>";
                 }
             });
 
@@ -65,7 +65,7 @@
 
                 document.getElementById("clients-online").innerHTML = "";
                 for(var i = 0; i < clients.length; i++) {
-                    document.getElementById("clients-online").innerHTML += "<div class='client-list'><img width='64' height='96' src='res/preview/ahmedpre.png'><div><span>" + clients[i].username + "</span><br><span>" + clients[i].faction + "</span></div></div>";
+                    document.getElementById("clients-online").innerHTML += "<div class='client-list'><img width='64' height='96' src='res/preview/" + clients[i].sprite + "pre.png'><div><span>" + clients[i].username + "</span><br><span>" + clients[i].faction + "</span></div></div>";
                 }
             });
 
@@ -438,6 +438,8 @@
     function Client(id, pos, width, height, username, spritesheet) {
         var e = new Entity(pos, width, height);
         e.id = id;
+
+        e.sprite = spritesheet.image.src.replace(engine.client.ip + "/res/character/", "").replace(".png", "");
 
         var nametags = document.getElementsByClassName("nametag");
         for(var i = 0; i < nametags.length; i++) {

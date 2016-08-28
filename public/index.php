@@ -91,7 +91,7 @@ function getAccountName($conn) {
         <canvas id="canvas"></canvas>
     </div>
     <div style="background-image: url('res/textbox.png'); background-size: 100% 100%; align-items: stretch; flex: 1; position: relative;">
-        <div style="font-family: 'pokefont'; font-size: 36pt; padding-top: 8px;">Online:</div>
+        <div style="font-family: 'pokefont'; font-size: 36pt; padding-top: 8px;">Players Online</div>
         <div id="clients-online" style="position: absolute; width: 90%; height: 88%; margin: 5%; margin-top: 0; text-align: left; overflow-y: scroll;">
 
         </div>

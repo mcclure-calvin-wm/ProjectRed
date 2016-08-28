@@ -31,7 +31,7 @@ function getInventory($conn) {
                                     <input class="select" type="submit" name="submit" value=" "/>
                                 </form>
                          </div>
-                     </li><br>';
+                     </li>';
             }
             else {
                 echo '<li class="product">
@@ -56,53 +56,54 @@ function changeSprite($conn, $pid) {
 
 function getFactionRequests($conn) {
     $token = getToken();
-    $sql = 'SELECT uu.id, uu.username FROM users u LEFT JOIN factions_users fu ON u.id = fu.users_id AND fu.rank = "owner" LEFT JOIN factions_requests fr ON fu.factions_id = fr.factions_id LEFT JOIN users uu ON fr.users_id = uu.id WHERE u.token = ?';
+    $sql = 'SELECT uu.id, uu.username, uu.sprite FROM users u LEFT JOIN factions_users fu ON u.id = fu.users_id AND fu.rank = "owner" LEFT JOIN factions_requests fr ON fu.factions_id = fr.factions_id LEFT JOIN users uu ON fr.users_id = uu.id WHERE u.token = ?';
     $stmt = $conn->prepare($sql);
     if($stmt->execute(array($token))) {
-        $requests = '<li class="product" style="font-weight: bold; margin-bottom: 0;">
-            <span>Faction Requests:</span>
-        </li><br>';
-        $exit = true;
+        $requests = '<span class="red" style="font-size: 24pt">Requests</span>';
         while ($row = $stmt->fetch()) {
             if($row['id'] != null) {
-                $exit = false;
                 $username = $row['username'];
-                $requests .= '<li class="product">
-                    <div><span style="font-weight: bold;">Username:</span> ' . $username . '</div><br>
-                    <form method="post" action="">
-                        <input type="hidden" name="id" value="' . $row['id'] . '"/>
-                        <input class="" type="submit" name="accept" value="ACCEPT"/>
-                    </form>
-                    </li><br>';
+                $sprite = $row['sprite'];
+                $requests .= '<div class="client-list">
+                                    <img width="64" height="96" src="../res/preview/' . substr($sprite, 0, -4) . 'pre.png">
+                                    <div>
+                                        <span>' . $username .  '</span>
+                                        <form method="post" action="">
+                                            <input type="hidden" name="id" value="' . $row['id'] . '"/>
+                                            <input class="btn-black" type="submit" name="accept" value="ACCEPT"/>
+                                        </form>
+                                    </div>
+                                </div>';
             }
         }
-        if(!$exit) echo $requests;
+        echo $requests;
     }
 }
 
 function getFactionMembers($conn) {
     $token = getToken();
-    $sql = 'SELECT uu.id, uu.username FROM users u LEFT JOIN factions_users fu ON u.id = fu.users_id AND fu.rank = "owner" LEFT JOIN factions_users fuu ON fu.factions_id = fuu.factions_id LEFT JOIN users uu ON fuu.users_id = uu.id WHERE u.token = ? AND uu.id != fu.users_id';
+    $sql = 'SELECT uu.id, uu.username, uu.sprite FROM users u LEFT JOIN factions_users fu ON u.id = fu.users_id AND fu.rank = "owner" LEFT JOIN factions_users fuu ON fu.factions_id = fuu.factions_id LEFT JOIN users uu ON fuu.users_id = uu.id WHERE u.token = ? AND uu.id != fu.users_id';
     $stmt = $conn->prepare($sql);
     if($stmt->execute(array($token))) {
-        $members = '<li class="product" style="font-weight: bold; margin-bottom: 0;">
-            <span>Faction Members:</span>
-        </li><br>';
-        $exit = true;
+        $members = '<span class="red" style="font-size: 24pt">Members</span>';
         while ($row = $stmt->fetch()) {
             if($row['id'] != null) {
-                $exit = false;
                 $username = $row['username'];
-                $members .= '<li class="product">
-                    <div><span style="font-weight: bold;">Username:</span> ' . $username . '</div><br>
-                    <form method="post" action="">
-                        <input type="hidden" name="id" value="' . $row['id'] . '"/>
-                        <input class="" type="submit" name="kick" value="KICK"/>
-                    </form>
-                    </li><br>';
+                $sprite = $row['sprite'];
+                $members .= '
+                    <div class="client-list">
+                        <img width="64" height="96" src="../res/preview/' . substr($sprite, 0, -4) . 'pre.png">
+                        <div>
+                            <span>' . $username .  '</span>
+                            <form method="post" action="">
+                                <input type="hidden" name="id" value="' . $row['id'] . '"/>
+                                <input class="btn-black" type="submit" name="kick" value="KICK"/>
+                            </form>
+                        </div>
+                    </div>';
             }
         }
-        if(!$exit) echo $members;
+        echo $members;
     }
 }
 
@@ -152,18 +153,21 @@ function deleteMemberships($conn, $id) {
 
 function getAccountProfile($conn) {
     $token = getToken();
-    $sql = 'SELECT username, money, rank FROM users WHERE token = ?';
+    $sql = 'SELECT username, sprite, money, rank FROM users WHERE token = ?';
     $stmt = $conn->prepare($sql);
     if ($stmt->execute(array($token))) {
         while ($row = $stmt->fetch()) {
             $username = $row['username'];
+            $sprite = $row['sprite'];
             $money = $row['money'];
             $rank = ucfirst($row['rank']);
-            echo '<li class="product">
-                    <div><span style="font-weight: bold;">Username:</span> '.$username.'</div>
-                    <div><span style="font-weight: bold;">Balance:</span> $'.$money.'</div>
-                    <div><span style="font-weight: bold;">Rank:</span> '.$rank.'</div>
-                    </li><br>';
+            echo '<div class="client-list">
+                        <img width="64" height="96" src="../res/preview/' . substr($sprite, 0, -4) . 'pre.png">
+                        <div>
+                            <span>Username: ' . $username .  '</span>&nbsp;&nbsp;&nbsp;<span>Rank: ' . $rank . '</span><br>
+                            <span>Balance: $' . $money .  '</span>
+                        </div>
+                    </div>';
         }
     }
 }
@@ -220,7 +224,7 @@ if(isset($_POST['submit'])) {
 <div class="min-header">
     <a href="/">Home</a>
     <?php
-        getAccountName($dbh);
+    getAccountName($dbh);
     ?>
     <a href="/factions">Factions</a>
     <a href="/login">Login</a>
@@ -231,25 +235,39 @@ if(isset($_POST['submit'])) {
 
 <div class="content">
     <ul class="products">
-        <?php
-            getAccountProfile($dbh);
-        ?>
-        <br><br><br>
-        <?php
-        getFactionMembers($dbh);
-        ?>
-        <?php
-        getFactionRequests($dbh);
-        ?>
-        <br>
-        <br>
-        <br>
-        <li class="product" style="font-weight: bold; margin-bottom: 0;">
-            <span>Sprite Inventory:</span>
-        </li><br>
-        <?php
-        getInventory($dbh);
-        ?>
+        <div>
+            <li class="product" style="font-weight: bold; margin-bottom: 0; background-color: #c80000;">
+                <span style="font-size: 32pt;">Account</span>
+            </li><br>
+            <li class="product">
+                <?php
+                getAccountProfile($dbh);
+                ?>
+            </li>
+        </div>
+        <div>
+            <li class="product" style="font-weight: bold; margin-bottom: 0; background-color: #c80000;">
+                <span style="font-size: 32pt;">Faction</span>
+            </li><br>
+            <li class="product" style="height: 640px; overflow-y: scroll">
+                <?php
+                getFactionMembers($dbh);
+                ?>
+            </li>
+            <li class="product" style="height: 640px; overflow-y: scroll">
+                <?php
+                getFactionRequests($dbh);
+                ?>
+            </li>
+        </div>
+        <div>
+            <li class="product" style="font-weight: bold; margin-bottom: 0; background-color: #c80000;">
+                <span style="font-size: 32pt;">Inventory</span>
+            </li><br>
+            <?php
+            getInventory($dbh);
+            ?>
+        </div>
     </ul>
 </div>
 

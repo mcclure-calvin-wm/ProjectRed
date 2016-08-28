@@ -28,7 +28,7 @@ function getFactions($conn) {
                     <div style="width: 128px; height: 128px;">
                         <form method="post" action="">
                             <input type="hidden" name="id" value="' . $row['id'] . '"/>
-                            <input class="" type="submit" name="request" value="JOIN"/>
+                            <input class="btn-black" type="submit" name="request" value="JOIN"/>
                         </form>
                     </div>
                  </div>

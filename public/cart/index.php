@@ -131,14 +131,14 @@ if(isset($_POST['delete'])) {
 </div>
 
 <div class="content">
-    <ul class="products">
+    <ul class="products" style="text-align: center; margin: 0;">
         <?php
             if(getProducts($dbh)) {
                 echo '<li class="product">
                             <div class="product-cat"><a href="/shop">Back to Shop</a></div>
                             <div class="product-rate product-cat">
                                 <form method="post" action="/checkout/">
-                                    <input type="submit" name="submit" value="Checkout"/>
+                                    <input type="submit" class="btn-black" name="submit" value="Checkout"/>
                                 </form>
                             </div>
                         </li>';

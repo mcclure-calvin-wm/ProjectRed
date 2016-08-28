@@ -5,6 +5,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'pokefont';
 }
 canvas {
     border: 1px solid;
@@ -20,7 +21,6 @@ div.client-list {
 div.client-list div {
     display: inline-block;
     margin-left: 12px;
-    width: 0px;
     height: 96px;
 }
 
@@ -34,6 +34,7 @@ div.text {
     text-shadow: 1px 1px #685870, 2px 2px #685870;
     color: white;
 }
+
 img {
     user-drag: none;
     user-select: none;
@@ -42,6 +43,7 @@ img {
     -webkit-user-select: none;
     -ms-user-select: none;
 }
+
 span.red {
     color: red;
 }
@@ -78,6 +80,7 @@ body {
     background-size: 256px 256px;
     text-align: center;
 }
+
 div.header {
     background: rgba(0,0,0,.5);
     text-align: center;
@@ -106,6 +109,10 @@ div.min-header a:hover {
 
 div.content {
     text-align: center;
+}
+
+div#mainDropdown {
+    font-size: 20pt;
 }
 
 div.dropdown-btn {
@@ -154,6 +161,10 @@ div.profile {
     height: 100%;
 }
 
+div.nametag {
+    font-size: 20pt;
+}
+
 div.show {
     display: inline-block;
 }
@@ -187,6 +198,21 @@ img.product-img {
     height: 192px;
 }
 
+input.btn-black {
+    background-color: #000000;
+    border: none;
+    color: white;
+    padding: 8px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+input.btn-black:hover {
+    cursor: pointer;
+}
+
 input.cart {
     background: url("../res/button/cart.png");
     background-size: cover;
@@ -214,21 +240,25 @@ input.select {
     cursor: pointer;
 }
 
+input {
+    font-size: 18pt;
+}
+
 input.required {
     background-color: #ffaeae;
 }
 
 input.required::-webkit-input-placeholder {
-    color:    #555;
+    color: #555;
 }
 input.required:-moz-placeholder {
-    color:    #555;
+    color: #555;
 }
 input.required::-moz-placeholder {
-    color:    #555;
+    color: #555;
 }
 input.required:-ms-input-placeholder {
-    color:    #555;
+    color: #555;
 }
 
 li.product {
@@ -237,6 +267,7 @@ li.product {
     width: 40%;
     display: inline-block;
     margin: 1%;
+    margin-top: 0;
     text-align: center;
 }
 
@@ -264,6 +295,8 @@ div.product-rate {
 
 ul.products {
     padding: 16px;
+    text-align: left;
+    margin-left: 13%;
 }
 
 span.product-name {

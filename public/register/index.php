@@ -52,7 +52,7 @@ function register($conn) {
     else {
         $form .= '<input name="email" maxlength="100" placeholder="Email" value="'.$email.'"/><br><br>';
     }
-    $form .= '<input class="submit" type="submit" name="submit" value="Register"/>
+    $form .= '<input class="btn-black" type="submit" name="submit" value="Register"/>
               </form>';
 
     if($continue) {
@@ -72,7 +72,7 @@ function register($conn) {
                         <input name="username" maxlength="16" placeholder="Username"/><br><br>
                         <input type="password" name="password" maxlength="45" placeholder="Password"/><br><br>
                         <input name="email" maxlength="100" placeholder="Email"/><br><br>
-                        <input class="submit" type="submit" name="submit" value="Register"/>
+                        <input class="btn-black" type="submit" name="submit" value="Register"/>
                       </form>';
                 }
             }
@@ -85,7 +85,7 @@ function register($conn) {
                     <input name="username" maxlength="16" placeholder="Username"/><br><br>
                     <input type="password" name="password" maxlength="45" placeholder="Password"/><br><br>
                     <input name="email" maxlength="100" placeholder="Email"/><br><br>
-                    <input class="submit" type="submit" name="submit" value="Register"/>
+                    <input class="btn-black" type="submit" name="submit" value="Register"/>
                   </form>';
         }
     }
@@ -161,7 +161,7 @@ function getAccountName($conn) {
                     <input name="username" maxlength="16" placeholder="Username"/><br><br>
                     <input type="password" name="password" maxlength="45" placeholder="Password"/><br><br>
                     <input name="email" maxlength="100" placeholder="Email"/><br><br>
-                    <input class="submit" type="submit" name="submit" value="Register"/>
+                    <input class="btn-black" type="submit" name="submit" value="Register"/>
                   </form>';
         }
     ?>
