@@ -1,4 +1,4 @@
-(function() {
+//(function() {
     var engine;
     function main() {
         engine = new Engine("canvas", 240, 160);
@@ -6,7 +6,6 @@
         engine.setClearColor('black');
         engine.setAutoResize(true);
 
-        //http://97.117.160.168/
         engine.client = new ServerSocket(location.href, 8000);
         engine.client.init(function() {
             engine.client.connect();
@@ -168,6 +167,8 @@
         engine.init = init;
         engine.update = update;
         engine.render = render;
+
+        engine.onMouseDown = onMouseDown;
 
         engine.start();
     }
@@ -739,17 +740,17 @@
         self.print = function() {
             var string = "[";
             for(var i = 0; i < self.mapHeight; i++) {
-                string += "\n    [";
+                string += "[";
                 for(var j = 0; j < self.mapWidth; j++) {
                     var value = self.map[i][j].toString();
-                    if(value.length == 1) value = " " + value;
+                    if(value.length == 1) value = "" + value;
                     string += value;
                     if(j < self.mapWidth - 1) string += ",";
                 }
                 string += "]";
                 if(i < self.mapHeight - 1) string += ",";
             }
-            string += "\n]";
+            string += "]";
             return string;
         };
     }
@@ -840,30 +841,13 @@
         var screenX = player.pos.x - engine.canvas.width / 2 + player.width / 2;
         var screenY = player.pos.y - engine.canvas.height / 2;
         var x = Math.floor((screenX + e.x) / 16);
-        var y = Math.floor((screenY + e.y) / 16);
+        var y = Math.floor((screenY + e.y) / 16) + 1;
+        console.log(x + " " + y);
         if(e.button == 0) world.map[y][x] = 1;
         else world.map[y][x] = 0;
-    }
-
-    function Pokemon(id, level) {
-        this.id = id;
-        this.name = POKEMON[id].name;
-        this.level = level || 5;
-        this.iv = 0;
-        this.ev = 0;
-        this.nature = NATURES[Math.floor(Math.random() * 25)];
-        this.base = POKEMON[id].stats;
-        this.stats = {
-            hp: Math.round((this.base.hp * 2 + this.iv + (this.ev / 4)) * this.level / 100 + 10 + this.level),
-            attack: Math.round(((this.base.attack * 2 + this.iv + (this.ev / 4)) * this.level / 100 + 5) * this.nature.attack),
-            defense: Math.round(((this.base.defense * 2 + this.iv + (this.ev / 4)) * this.level / 100 + 5) * this.nature.defense),
-            spatk: Math.round(((this.base.spatk * 2 + this.iv + (this.ev / 4)) * this.level / 100 + 5) * this.nature.spatk),
-            spdef: Math.round(((this.base.spdef * 2 + this.iv + (this.ev / 4)) * this.level / 100 + 5) * this.nature.spdef),
-            speed: Math.round(((this.base.speed * 2 + this.iv + (this.ev / 4)) * this.level / 100 + 5) * this.nature.speed)
-        };
     }
 
     document.body.onload = function() {
         main();
     };
-})();
+//})();

@@ -98,6 +98,11 @@ function getAccountName($conn) {
     </div>
 </div>
 
+<div id="mapoutput" style="float: right">
+    <textarea id="output" readonly></textarea>
+    <button id="print" onclick="(function(){document.getElementById('output').value=world.print();})()">Print</button>
+</div>
+
 <script>
     function toggleDropdown() {
         document.getElementById("mainDropdown").classList.toggle("show");
@@ -113,7 +118,6 @@ function getAccountName($conn) {
 </script>
 
 <script type="text/javascript" src="js/Game.js"></script>
-<script type="text/javascript" src="js/Stats.js"></script>
 <script type="text/javascript" src="js/World.js"></script>
 </body>
 </html>
