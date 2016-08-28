@@ -47,6 +47,11 @@
                 client.factionid = data.factionid;
                 client.nametag.style.color = data.color;
                 clients.push(client);
+
+                document.getElementById("clients-online").innerHTML = "";
+                for(var i = 0; i < clients.length; i++) {
+                    document.getElementById("clients-online").innerHTML += "<div class='client-list'><img width='64' height='96' src='res/preview/redpre.png'><div><span>" + clients[i].username + "</span><br><span>" + clients[i].faction + "</span></div></div>";
+                }
             });
 
             engine.client.receive('delete_client', function(data) {
@@ -56,6 +61,11 @@
                         document.body.removeChild(client.nametag);
                         clients.splice(i, 1);
                     }
+                }
+
+                document.getElementById("clients-online").innerHTML = "";
+                for(var i = 0; i < clients.length; i++) {
+                    document.getElementById("clients-online").innerHTML += "<div class='client-list'><img width='64' height='96' src='res/preview/ahmedpre.png'><div><span>" + clients[i].username + "</span><br><span>" + clients[i].faction + "</span></div></div>";
                 }
             });
 

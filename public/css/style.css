@@ -9,29 +9,25 @@
 canvas {
     border: 1px solid;
 }
+
+div.client-list {
+    font-family: 'pokefont';
+    font-size: 32pt;
+    padding-left: 8px;
+    text-align: left;
+}
+
+div.client-list div {
+    display: inline-block;
+    margin-left: 12px;
+    width: 0px;
+    height: 96px;
+}
+
 div#container {
     position: relative;
     display: inline-block;
 }
-/*div#textDiv {
-    position: absolute;
-    top: 68.9%;
-    left: 3px;
-    width: 99.4%;
-    height: 30%;
-    background-image: url('../res/textbox.png');
-    background-size: 100% 100%;
-    display: none;
-}
-div#textWrap {
-    position: absolute;
-    top: 20%;
-    left: 4%;
-    width: 92%;
-    height: 60%;
-    text-align: left;
-    overflow-y: scroll;
-}*/
 div.text {
     font-family: 'pokefont';
     font-size: 24pt;
@@ -75,7 +71,6 @@ span.purple {
 span.black {
     color: black;
 }
-
 body {
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
@@ -83,7 +78,6 @@ body {
     background-size: 256px 256px;
     text-align: center;
 }
-
 div.header {
     background: rgba(0,0,0,.5);
     text-align: center;
@@ -138,6 +132,7 @@ div.dropdown-content {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     top: 80px;
     left: -160px;
+    z-index: 1;
 }
 
 div.dropdown-content a {
